@@ -21,6 +21,12 @@ export default class  Navbar extends React.Component{
                             <Link to="/" className="nav-link">Products</Link>
                         </li>
                     </ul>
+                    <Link to="/admin" className="ml-50">
+                        <ButtonContainer>
+                           admin
+
+                        </ButtonContainer>
+                    </Link>
                     <Link to="/cart" className="ml-auto">
                         <ButtonContainer>
                             <span className="mr-2">

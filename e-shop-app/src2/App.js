@@ -10,8 +10,8 @@ import Cart from "./components/Cart"
 import Modal from './components/Modal'
 import Form from './components/Form';
 import Admin from './components/Admin';
-import Cat1 from './components/Cat1';
-import Cat2 from './components/Cat2'
+
+
 
 class App extends React.Component{
   render(){
@@ -24,8 +24,6 @@ class App extends React.Component{
         <Route path="/cart" component={Cart}></Route>
         <Route path="/form" component={Form}></Route>
         <Route path="/admin" component={Admin}></Route>
-        <Route path="/cat1" component={Cat1}></Route>
-        <Route path="/cat2" component={Cat2}></Route>
         <Route component={Default}></Route>
       </Switch>
       <Modal />

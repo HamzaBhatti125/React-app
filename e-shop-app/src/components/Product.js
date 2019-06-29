@@ -1,58 +1,140 @@
 import React from 'react'
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import { ProductConsumer } from '../context';
-import PropTypes from 'prop-types'
-export default class  Product extends React.Component{
-    render(){
-        const {id, title , img , price , inCart } = this.props.product;
-        return(
-            <ProductWrapper className='col-9 mx-auto col-md-6 col-lg-3 my-3'>
-                <div className='card'>
-                <ProductConsumer>
-                    {(value)=>(
-                        <div className='img-container p-5' onClick={() => 
-                            value.handleDetail(id)
-                        }>
-                            <Link to="/details">
-                                <img src={img}  alt='Product' className='card-img-top'/>
-                            </Link>
-                            <button className='cart-btn' disabled={inCart? true: false} onClick={()=>{
-                                value.addToCart(id); 
-                                value.openModal(id);
-                                }}>
-                            {inCart?(<p className='text-capitalize mb-0' disabled>in cart</p>):(<i className='fas fa-cart-plus' />)}
-                            </button>
-                        </div>
-                    )}
-                </ProductConsumer>
-                
-                    {/*card-footer*/}
-                    <div className='card-footer d-flex justify-content-between'>
-                        <p className='align-self-center mb-0'>{title}</p>
-                        <h5 className='text-blue font-italic mb-0'>
-                        <span className='mr-1'>$</span>
-                        {price}
-                        </h5>
-                    </div>
-                
 
+
+export default class  Product extends React.Component{
+
+// functionCall = () =>{
+//     return(
+//     <div className='row'>
+//     <ProductConsumer>
+//         {(value)=>{
+//                 return value.products.map(product =>{
+//                     return <MainCat key={product.id}  product={product} />
+//                 })
+//                 }
+//         }
+//     </ProductConsumer>
+//     </div> 
+//         )
+//        }
+
+       
+    state ={
+        testArray: ['images/product-1.png','images/product-2.png','images/product-3.png','images/product-4.png','images/product-5.png','images/product-6.png','images/product-7.jpg','images/product-8.png'],
+        testIndex :['/Cat1','/Cat2','/Cat1','/Cat2','/Cat1','/Cat2','/Cat1','/Cat2'],
+        testName: ['Home Appliances', 'Automotive', 'Cameras', 'Computer Accessoseries','Fitness','Furnitures','Laptops','Watches']
+    }
+
+    render(){
+        // const {id, title , img , price , inCart } = this.props.product;
+        return(
+           <React.Fragment>
+               {this.state.testArray.map((elem,index)=>{
+                   return(
+                       <ProductWrapper className='col-9 mx-auto col-md-6 col-lg-3 my-3' key={index}>
+                <div className='card' >
+                        <div className='img-container p-5'>
+                            <Link to={this.state.testIndex[index]}>
+                                <img src ={elem} alt="Product" className="card-img-top"/>
+                            </Link>
+                        </div>
+                        <div className='card-footer d-flex justify-content-between'>
+                        <p className='align-self-center mb-0'>{this.state.testName[index]}</p>
+                        </div>
                 </div>
-            </ProductWrapper>
+                </ProductWrapper>
+
+                   )
+               })
+                }               
+
+
+
+
+
+
+
+
+
+
+
+               {/* <ProductWrapper className='col-9 mx-auto col-md-6 col-lg-3 my-3'>
+                <div className='card'>
+                        <div className='img-container p-5'>
+                            <Link to='/Cat1'>
+                                <img src ={image} alt="Product" className="card-img-top"/>
+                            </Link>
+                        </div>
+                        <div className='card-footer d-flex justify-content-between'>
+                        <p className='align-self-center mb-0'>Category 1</p>
+                        </div>
+                </div>
+                </ProductWrapper>
+                <ProductWrapper className='col-9 mx-auto col-md-6 col-lg-3 my-3'>
+                <div className='card'>
+                        <div className='img-container p-5'>
+                            <Link to='/Cat2'>
+                                <img src ={image} alt="Product" className="card-img-top"/>
+                            </Link>
+                        </div>
+                        <div className='card-footer d-flex justify-content-between'>
+                        <p className='align-self-center mb-0'>Category 2</p>
+                        </div>
+                </div>
+               </ProductWrapper>
+               <ProductWrapper className='col-9 mx-auto col-md-6 col-lg-3 my-3'>
+                <div className='card'>
+                        <div className='img-container p-5'>
+                            <Link to='/Cat2'>
+                                <img src ={image} alt="Product" className="card-img-top"/>
+                            </Link>
+                        </div>
+                        <div className='card-footer d-flex justify-content-between'>
+                        <p className='align-self-center mb-0'>Category 2</p>
+                        </div>
+                </div>
+               </ProductWrapper>
+               <ProductWrapper className='col-9 mx-auto col-md-6 col-lg-3 my-3'>
+                <div className='card'>
+                        <div className='img-container p-5'>
+                            <Link to='/Cat2'>
+                                <img src ={image} alt="Product" className="card-img-top"/>
+                            </Link>
+                        </div>
+                        <div className='card-footer d-flex justify-content-between'>
+                        <p className='align-self-center mb-0'>Category 2</p>
+                        </div>
+                </div>
+               </ProductWrapper> */}
+        {/* <div className='py-5'>
+            <div className='container'>
+                   <div className='row'>
+                        <p>Hello this is sample text</p>
+                        <div className='col-10 mt-2 ml-sm-5 ml-md-auto col-sm-8 text-capitalize text-right'>
+                        <Link to='/Cat1'>
+                            <button className='btn btn-outline-danger text-uppercase mb-3 px-5' type='button'>Click Me</button>
+                        </Link>
+                    </div>
+                   </div>
+                   <div className='row'>
+                        <p>Hello this is sample text</p>
+                        <div className='col-10 mt-2 ml-sm-5 ml-md-auto col-sm-8 text-capitalize text-right'>
+                        <Link to='/Cat2'>
+                            <button className='btn btn-outline-danger text-uppercase mb-3 px-5' type='button'>Click Me</button>
+                        </Link>
+                    </div>
+                   </div>
+            </div>
+        </div> */}
+</React.Fragment> 
         )
     }
 
 }
 
-Product.propTypes = {
-    product: PropTypes.shape({
-        id: PropTypes.number,
-        img: PropTypes.string,
-        title: PropTypes.string,
-        price: PropTypes.number,
-        inCart: PropTypes.bool
-    }).isRequired
-}
+
 
 const ProductWrapper = styled.div`
 .card{

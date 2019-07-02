@@ -12,9 +12,17 @@ import Form from './components/Form';
 import Admin from './components/Admin';
 import Cat1 from './components/Cat1';
 import Cat2 from './components/Cat2'
+import axios from "axios"
 
 class App extends React.Component{
   render(){
+  //   axios.post("/testtt",{
+  //     test : "working"
+  //   })
+  //   .then(res =>{ 
+  //     console.log("console from axios")
+  //     console.log("data",res.data)
+  // })
     return(
     <React.Fragment>
       <Navbar />

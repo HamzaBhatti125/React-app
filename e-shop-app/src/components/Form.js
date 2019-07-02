@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../App.css'
+import axios from 'axios'
 
 
 const emailRegex = RegExp(
@@ -25,7 +26,13 @@ const formValid = ({ formErrors, ...rest }) => {
 class Form extends Component {
   constructor(props) {
     super(props);
-
+    // fetch("http://localhost:5000/fetchData")
+    // .then(res => {
+    //     // res.json()
+    //   console.log("res.data",res.data,"res.json()",res.json())
+    // })
+    // .then(res => console.log("res ", res))
+    
     this.state = {
       firstName: null,
       lastName: null,
@@ -44,20 +51,7 @@ class Form extends Component {
     };
   }
 
-  // showDropdownMenu =(event) => {
-  //   event.preventDefault();
-  //   this.setState({ displayMenu: true }, () => {
-  //   document.addEventListener('click', this.hideDropdownMenu);
-  //   });
-  // }
-
-  // hideDropdownMenu =() => {
-  //   this.setState({ displayMenu: false }, () => {
-  //     document.removeEventListener('click', this.hideDropdownMenu);
-  //   });
-
-  // }
-
+  
 
   handleSubmit = e => {
     e.preventDefault();
@@ -72,6 +66,21 @@ class Form extends Component {
         City: ${this.state.city}
         Address: ${this.state.address}
       `);
+
+      let testObj = {
+        Fname: this.state.firstName,
+        Lname: this.state.lastName,
+        email: this.state.email,
+        number: this.state.number,
+        city: this.state.city,
+        address: this.state.address 
+      }
+
+      axios.post("/insert",testObj)
+      .then(res =>{
+        console.log("response from server",res.data)
+      } )
+
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
